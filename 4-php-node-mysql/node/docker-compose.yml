@@ -1,0 +1,16 @@
+version: "3"
+services:
+    node:
+        image: "node:lts-alpine"
+        ports:
+            - "8888:8888"
+        user: "node"
+        working_dir: /home/node/app
+        environment:
+            NODE_PORT: 8888
+            NODE_ENV: production
+        volumes:
+            - ./:/home/node/app
+        expose:
+            - "8081"
+        command: "npm start"
