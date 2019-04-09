@@ -12,7 +12,7 @@ services:
             MYSQL_LOGIN: customuser
             MYSQL_PASSWORD: custompasswd
         links:
-            - mysql:mysql
+            - mysql
     mysql:
         image: mysql:5.6
         environment:

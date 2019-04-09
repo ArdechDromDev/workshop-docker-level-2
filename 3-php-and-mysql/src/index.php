@@ -3,7 +3,7 @@
 $majorProblems = [];
 $noProblems = [];
 
-// Check 2
+// Check 1
 
 try{
     $dbh = new pdo('mysql:host='.$_ENV['MYSQL_HOST'].';dbname='.$_ENV['MYSQL_DBNAME'],
@@ -16,7 +16,7 @@ catch(PDOException $ex){
     $majorProblems['Connexion BDD impossible.'] = $ex->getMessage();
 }
 
-// Check 3
+// Check 2
 
 if(is_dir('./uploads')){
     $noProblems['Dossier ./uploads ok.'] = '';
@@ -319,7 +319,7 @@ $hasNoProblems = count($noProblems);
                             <ol>
                                 <?php foreach ($majorProblems as $problemKey => $valueProblem): ?>
                                     <li><?php echo $problemKey ?>
-                                        <p class="help"><em><?php echo $valueProblem ?></em></p>
+                                        <p class="help"><em><?= $valueProblem ?></em></p>
                                     </li>
                                 <?php endforeach; ?>
                             </ol>
@@ -329,25 +329,24 @@ $hasNoProblems = count($noProblems);
                             <h2 class="ok">Validé</h2>
                             <ul>
                                 <?php foreach ($noProblems as $problemKey => $valueProblem): ?>
-                                    <li><?php echo $problemKey ?>
-                                    </li>
+                                    <li><?= $problemKey ?></li>
                                 <?php endforeach; ?>
                             </ol>
-			<?php endif; ?>
+            			<?php endif; ?>
 
-            <h1 class="title">Variables d'environments</h1>
+                        <h1 class="title">Variables d'environments</h1>
 
-            <table>
-                <?php foreach($_ENV as $key=>$value): ?>
-                <tr><th><?=$key?></th><td><?=$value?></td></tr>
-                <?php endforeach; ?>
-            </table>
+                        <table>
+                            <?php foreach($_ENV as $key => $value): ?>
+                            <tr><th><?= $key ?></th><td><?= $value ?></td></tr>
+                            <?php endforeach; ?>
+                        </table>
 
-            <h1 class="title">Photos</h1>
+                        <h1 class="title">Photos</h1>
 
-            <?php foreach(glob('./uploads/*') as $image): ?>
-                <img src="<?=$image?>" width="20%">
-            <?php endforeach; ?>
+                        <?php foreach(glob('./uploads/*') as $image): ?>
+                            <img src="<?= $image ?>" width="20%">
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
