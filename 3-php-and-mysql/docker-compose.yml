@@ -1,0 +1,22 @@
+version: "3"
+services:
+    php:
+        build: .
+        ports:
+            - "8000:80"
+        volumes:
+            - ./src/uploads:/var/www/html/uploads
+        environment:
+            MYSQL_HOST: mysql
+            MYSQL_DBNAME: customdb
+            MYSQL_LOGIN: customuser
+            MYSQL_PASSWORD: custompasswd
+        links:
+            - mysql
+    mysql:
+        image: mysql:5.6
+        environment:
+            MYSQL_ROOT_PASSWORD : toto
+            MYSQL_DATABASE: customdb
+            MYSQL_USER: customuser
+            MYSQL_PASSWORD: custompasswd
